@@ -1,0 +1,10 @@
+target/
+/target/
+/.classpath
+/.project
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
