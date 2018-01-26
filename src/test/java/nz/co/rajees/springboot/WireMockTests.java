@@ -76,8 +76,8 @@ public class WireMockTests {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost request = new HttpPost("http://localhost:8089/rule/test");
         request.addHeader("Content-Type", "application/json");
-        String jsonRequestEntity = "{\"name\": \"raj\"}";
-        StringEntity entity = new StringEntity(jsonRequestEntity);
+        String jsonRequestEntityString = "{\"name\": \"raj\"}";
+        StringEntity entity = new StringEntity(jsonRequestEntityString);
         request.setEntity(entity);
 
         //act
@@ -85,7 +85,8 @@ public class WireMockTests {
 
         //assert
         verify(postRequestedFor(urlEqualTo("/rule/test"))
-                .withHeader("Content-Type", equalTo("application/json")));
+                .withHeader("Content-Type", equalTo("application/json"))
+                .withRequestBody(containing(jsonRequestEntityString)));
         assertThat(response.getStatusLine().getStatusCode(), is(200));
     }
 
