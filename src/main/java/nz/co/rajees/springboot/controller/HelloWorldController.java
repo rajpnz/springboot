@@ -10,6 +10,6 @@ public class HelloWorldController {
 
     @GetMapping
     public String home(){
-        return "Hello Raj!";
+        return "Hello, Welcome to Raj's Spring Boot Application";
     }
 }
