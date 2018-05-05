@@ -1,11 +1,8 @@
 package nz.co.rajees.springboot.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
-import nz.co.rajees.springboot.json.CustomDateSerializer;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -18,7 +15,8 @@ public class User {
     @Size(min = 1, max = 10)
     private String name;
 
-    @JsonDeserialize(using = CustomDateSerializer.class)
+    //@JsonDeserialize(using = CustomDateSerializer.class)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date birthday;
 
     public Date getBirthday() {
