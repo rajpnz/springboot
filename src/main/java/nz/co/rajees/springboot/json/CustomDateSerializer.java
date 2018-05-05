@@ -4,11 +4,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import org.joda.time.DateTime;
+import org.joda.time.format.ISODateTimeFormat;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -16,6 +15,10 @@ import java.util.Date;
  * @see <a href="">http://www.baeldung.com/jackson-serialize-dates</a>
  */
 public class CustomDateSerializer extends StdDeserializer<Date> {
+
+    public static void main(String[] args) {
+        System.out.println(ISODateTimeFormat.dateTime().print(DateTime.now()));
+    }
 
     public CustomDateSerializer() {
         this(null);
@@ -28,9 +31,10 @@ public class CustomDateSerializer extends StdDeserializer<Date> {
     public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
             throws IOException, JsonProcessingException {
         String date = jsonParser.getText();
-        // date in format 2011-12-03T10:15:30
-        LocalDateTime localDateTime = LocalDateTime.parse(date, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        Date out = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-        return out;
+        // date in format 2018-05-05T13:13:09.588+12:00
+
+        DateTime dateTime = ISODateTimeFormat.dateTime().parseDateTime(date);
+        return dateTime.toDate();
     }
 }
+
