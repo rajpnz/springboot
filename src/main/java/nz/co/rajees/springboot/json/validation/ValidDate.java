@@ -1,4 +1,4 @@
-package nz.co.rajees.springboot.json;
+package nz.co.rajees.springboot.json.validation;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

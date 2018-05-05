@@ -1,4 +1,4 @@
-package nz.co.rajees.springboot.json;
+package nz.co.rajees.springboot.json.validation;
 
 import org.joda.time.DateTime;
 

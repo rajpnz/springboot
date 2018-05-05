@@ -15,6 +15,6 @@ public class HelloWorldController {
 
     @PostMapping(path = "/users")
     public String createUser(@Validated @RequestBody User user) {
-        return user.getName();
+        return user.getName() + " " + user.getBirthdayAsStringAsDate();
     }
 }
