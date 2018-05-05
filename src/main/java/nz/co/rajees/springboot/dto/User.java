@@ -1,5 +1,6 @@
 package nz.co.rajees.springboot.dto;
 
+import nz.co.rajees.springboot.json.ValidDate;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,6 +18,7 @@ public class User {
 
     //@JsonDeserialize(using = CustomDateSerializer.class)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @ValidDate
     private Date birthday;
 
     public Date getBirthday() {
