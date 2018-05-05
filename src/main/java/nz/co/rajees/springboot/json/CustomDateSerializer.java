@@ -6,8 +6,9 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -15,8 +16,6 @@ import java.util.Date;
  * @see <a href="">http://www.baeldung.com/jackson-serialize-dates</a>
  */
 public class CustomDateSerializer extends StdDeserializer<Date> {
-
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
     public CustomDateSerializer() {
         this(null);
@@ -29,10 +28,9 @@ public class CustomDateSerializer extends StdDeserializer<Date> {
     public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
             throws IOException, JsonProcessingException {
         String date = jsonParser.getText();
-        try {
-            return DATE_FORMAT.parse(date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        // date in format 2011-12-03T10:15:30
+        LocalDateTime localDateTime = LocalDateTime.parse(date, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        Date out = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        return out;
     }
 }
