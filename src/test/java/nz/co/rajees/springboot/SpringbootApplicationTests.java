@@ -17,6 +17,9 @@ public class SpringbootApplicationTests {
 	@Value("${my_name}")
 	private String myName ;
 
+
+	@Value("#{'${my_name2}' == '' ? 'Zippy' : '${my_name2}'}")
+	private String myName2 ;
 	/**
 	 * Example of using a static method in Spring Expression Language (spel)
 	 */
