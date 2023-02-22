@@ -11,6 +11,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Echo Variables
         run: |
-          echo "Runner OS environment variable: $RUNNER_OS"  
+          echo "Runner OS: $RUNNER_OS"  
+          echo "Runner architecture: $RUNNER_ARCH"  
+          echo "Github ref name: $GITHUB_REF_NAME" 
+          echo "Github Job Id: $GITHUB_JOB"           
         
         
