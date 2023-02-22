@@ -9,3 +9,8 @@ jobs:
     steps:
       - name: Clone Repository
         uses: actions/checkout@v2
+      - name: Echo Variables
+        run: |
+          echo "Runner OS environment variable: $RUNNER_OS"  
+        
+        
