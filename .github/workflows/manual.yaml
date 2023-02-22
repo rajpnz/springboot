@@ -1,0 +1,11 @@
+# .github/workflows/example-1.yml
+
+name: Test Manual Workflow
+on: [workflow_dispatch]
+jobs:
+  example:
+    name: Manual Workflow Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
